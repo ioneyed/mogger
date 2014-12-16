@@ -1,0 +1,316 @@
+#%RAML 0.8
+title: Post
+version: .1
+baseUri: http://mogger.ioneyed.com/api/
+documentation:
+  - title: PostController
+    content: |
+      Post controller is in charge of handling the Post object.
+      If version is not included it defaults to the lastest version
+
+      Application Mime-types
+        application/vnd.mogger.post+json;v={version}
+        application/vnd.mogger.post+xml;v={version}
+
+/posts:
+  displayName: Posts
+  description: |
+    Handle the POSTS object and child objects (comments/likes) pertaining to said post.
+
+    {pid} refers to the post's unique identifier.
+  get:
+    description: |
+      Retrieve a collection of posts
+    queryParameters:
+      query:
+        displayName: q
+        type: string
+    responses:
+      200:
+        body:
+          application/vnd.mogger.post:
+            example: |
+              {
+                “_status”: {},
+                “_links”: {
+                  “_self”: {"href":"api/{:category}/posts?q=quesryString"}
+                },
+                “_embedded”: {
+                  “posts”: [{
+                    “content”: “post content”,
+                    “author”: “author name",
+                    “createdAt”: “2014-11-20 22:00:33.511-05",
+                    “_links”: {
+                      "self":{ "href":"/api/{:category}/posts/{:pid}" },
+                      "edit":{ "href":"/api/{:category}/posts/{:pid}" },
+                      "delete":{"href":"/api/{:category}/posts/{:pid}" },
+                      "comments":{"href":"/api/{:category}/posts/{:pid}/comments"},
+                      "related":{"href":"/api/{:category}/posts/{:pid}/related"},
+                      "like":{"href":"/api/{:category}/posts/{:pid}/like"}
+                    }
+                  }]
+                }
+              }
+
+  post:
+    description: |
+      Create a new Post (tbd).
+    body:
+      application/vnd.mogger.post:
+        example: |
+          {
+            "title":"A New Post",
+            "category": "cpp",
+            "content":"# An exhibit of Markdown
+              This note demonstrates some of what [Markdown][1] is capable of doing.
+            *Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*",
+            "tags":["introduction","c++"],
+            "parent": "postID"
+
+          }
+
+  /{pid}:
+    get:
+      description: |
+        Find a post by it's post id (pid).
+      body:
+        application/vnd.mogger.post+json:
+          example: |
+            {
+              "_links": {
+                "self":{ "href":"/api/{:category}/posts/{:pid}" },
+                "edit":{ "href":"/api/{:category}/posts/{:pid}" },
+                "delete":{"href":"/api/{:category}/posts/{:pid}" },
+                "comments":{"href":"/api/{:category}/posts/{:pid}/comments"},
+                "related":{"href":"/api/{:category}/posts/{:pid}/related"},
+                "pagination":{
+                  "next": {"href":"/api/{:category}/posts/{:pid}/next"},
+                  "prev":{"href":"/api/{:category}/posts/{:pid}/prev"},
+                  "range":{
+                    "start":0,
+                    "end": 10,
+                    "total": 100
+                    }
+                }
+              },
+              "title":"Post 1",
+              "content": "markdown syntax",
+              "pid": 101,
+              "created": "2014-11-20 22:00:33.511-05",
+              "modified":"2014-11-20 22:00:33.511-05",
+              "_embedded":{
+                "children":[{
+                  "title":"Part 2",
+                  "href": "/posts/{:pid}"
+                }],
+                "author":{
+                  "name":"John",
+                  "_links":{
+                    "self":{"href":"/api/{:engine}/users/{:uid}"}
+                  }
+                  "likes": 25
+                }
+              }
+            }
+  /{id}:
+    uriParameters:
+      id:
+        type: string
+        description: account identifier
+    get:
+      headers:
+        Authorization:
+          type: string
+          description: Basic authentication header
+          example: |
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+
+    put:
+      description: Update the account
+      body:
+        application/x-www-form-urlencoded:
+          formParameters:
+            name:
+              description: name on account
+              type: string
+              example: Naruto Uzumaki
+            gender:
+              enum: ["male", "female"]
+
+    delete:
+      description: Delete the account
+
+  /login:
+    post:
+      description: Login with email and password
+      body:
+        application/json:
+          example: |
+            {
+              "email": "john@example.com",
+              "password": "super_secret"
+            }
+      responses:
+        200:
+          description: Login was correct
+          body:
+            text/xml:
+              example: |
+                <test>This is a test</test>
+        400:
+          description: Login was incorrect, please try again
+        401:
+          description: Not authorized
+          headers:
+            WWW-Authenticate:
+              type: string
+              description: user was not authorized
+              example: |
+                WWW-Authenticate: Basic realm="raml2html"
+
+  /forgot:
+    post:
+      description: Sends an email to the user with a link to set a new password
+      body:
+        application/json:
+          example: |
+            {
+              "email": "john@example.com"
+            }
+
+  /session:
+    get:
+      description: Gets the sessions
+
+    delete:
+      description: Deletes the session, logging out the user
+
+
+/forecasts:
+  displayName: Forecasts
+  description: The very top resource - displays OK
+  /{geoposition}:
+    description: Overview endpoint to assemble and access forecast data in various timely resolutions - THIS IS NOT DISPLAYED ANYWHERE WITH RAML2HTML :/
+    uriParameters:
+      geoposition:
+        description: A geoposition aquired by calling /geoposition/search - displays OK
+        type: string
+    get:
+      description: Provides an overview of the available data - display OK
+  /test:
+    description: No methods here, but it does have a description
+
+
+/conversations:
+  description: This is the top level description for /conversations.
+
+
+  get:
+    description: Get a list of conversation for the current user
+
+  post:
+    description: Create a new conversions. The currently logged in user doesn't need to be supplied in the members list, it's implied.
+    body:
+      application/json:
+        example: |
+          {
+            "content": "My message!",
+            "members": [1, 2, 3]
+          }
+    responses:
+      200:
+        description: A conversation with these members already existed, the message was added to that one
+      201:
+        description: The conversation was created and the message added to it
+
+  /{convId}:
+    get:
+      description: Get a single conversation including its messages
+
+    put:
+      description: Update a conversation (change members)
+
+    /messages:
+      get:
+        description: Get the messages for the conversation
+
+      post:
+        description: Add a new message to a conversation
+
+      /{messageId}:
+        put:
+          description: Update the message
+
+        delete:
+          description: Delete the message
+
+
+/users:
+  get:
+    description: Get a list of all users
+
+  post:
+    description: Creates a new user
+    body:
+      application/json:
+        example: |
+          {
+            "email": "john@example.com",
+            "name": "John Doe",
+          }
+
+  /{userId}:
+    get:
+      description: Get the details of a user including a list of groups he belongs to
+
+    put:
+      description: Update a user
+
+    delete:
+      description: Deletes a user
+
+
+/groups:
+  get:
+    description: Get a list of all the groups
+
+  post:
+    description: Create a new group
+    body:
+      application/json:
+        example: |
+          {
+            "name": "Cool people",
+            "members": [1, 2, 3]
+          }
+
+  /{groupId}:
+    get:
+      description: Get the details of a group, including the member list
+
+    put:
+      description: Update the group, **optionally** supplying the new list of members (overwrites current list)
+      body:
+        application/json:
+          example: |
+            {
+              "name": "Cool people",
+              "members": [1, 2, 3]
+            }
+
+    delete:
+      description: Removes the group
+
+    /users:
+      post:
+        description: Adds a user to a group
+        body:
+          application/json:
+            example: |
+              {
+                "user_id": 4,
+              }
+
+      /{userId}:
+        delete:
+          description: Removes a user from a group

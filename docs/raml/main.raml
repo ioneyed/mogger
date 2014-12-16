@@ -1,0 +1,16 @@
+#%RAML 0.8
+title: Mogger
+version: .1
+baseUri: http://mogger.ioneyed.com/api/
+documentation:
+  - title: Mogger API Documentation
+    content: |
+      Mogger is a multi-server blogging platform used to teach various languages as well as show that all languages can be used as a web service. Each mogger-backend has to follow this API to work within the mogger ecosystem.
+
+
+      Application Mime-types
+        application/vnd.mogger.post+json;v={version}
+        application/vnd.mogger.post+xml;v={version}
+
+/posts: !include post.raml
+/comments: !include comments.raml

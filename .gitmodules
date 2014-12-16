@@ -1,0 +1,3 @@
+[submodule "mogger-ui"]
+	path = mogger-ui
+	url = https://github.com/ioneyed/mogger-ui.git

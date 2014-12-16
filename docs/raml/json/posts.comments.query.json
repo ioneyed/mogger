@@ -1,0 +1,22 @@
+{
+  "_status":{
+    "code":200,
+    "message":"success"
+  },
+  "_links":{
+    "self": {"href":"/api/comments"},
+  },
+  "_embedded":{
+    "comments":[{
+      "cid":"commentID",
+      "content":"comment content",
+      "author" :"author of comment",
+      "createdAt": "time of conception",
+      "_links":{
+        "self"  :{"href":"/api/comments/{cid}"},
+        "like"  :{"href":"/api/comments/{cid}/like"},
+        "reply" :{"href":"/api/comments/{cid}/reply"}
+      }
+    }]
+  }
+}

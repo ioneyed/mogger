@@ -1,0 +1,9 @@
+{
+  "next":{"href":"<<self>>?start=50&end=100&total=100"},
+  "prev":{"href":"<<self>>"},
+  "range": {
+    "start": 0,
+    "step": 50,
+    "end": 50,
+    "total": 100
+}

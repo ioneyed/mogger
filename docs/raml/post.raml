@@ -1,0 +1,156 @@
+  displayName: Posts
+  description: |
+    Handle the POSTS object and child objects (comments/likes) pertaining to said post.
+
+    {pid} refers to the post's unique identifier.
+  get:
+    description: |
+      Retrieve a collection of posts
+    queryParameters:
+      q:
+        description: Search phrase to look for products
+        type: string
+        required: false
+    responses:
+      200:
+        body:
+          application/vnd.mogger.post:
+            example: |
+              {
+                "_status": {},
+                "_links": {
+                  "self": {"href":"/api/{:category}/posts?q=quesryString"},
+                  "pagination": !include json/pagination.json
+                },
+                "_embedded": {
+                  "posts": [{
+                    "category": "cpp"
+                    "content": "cpp post content",
+                    "author": "author name",
+                    "createdAt": "2014-11-20 22:00:33.511-05",
+                    "_links": {
+                      "self":{ "href":"/api/{category}/posts/{pid}" },
+                      "comments":{"href":"/api/{category}/posts/{pid}/comments"},
+                      "related":{"href":"/api/{category}/posts/{pid}/related"},
+                      "like":{"href":"/api/{category}/posts/{pid}/like"}
+                    }
+                  }]
+                }
+              }
+
+  post:
+    description: |
+      Create a new Post (tbd).
+    body:
+      application/vnd.mogger.post:
+        example: |
+          {
+            "title":"A New Post",
+            "category": "cpp",
+            "content":"# An exhibit of Markdown
+              This note demonstrates some of what [Markdown][1] is capable of doing.
+            *Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*",
+            "tags":["introduction","c++"],
+            "parent": "postID"
+          }
+    responses:
+      200:
+        body:
+          application/vnd.mogger.post:
+            example: |
+              {
+                "title":"A New Post",
+                "category": "cpp",
+                "content":"# An exhibit of Markdown
+                This note demonstrates some of what [Markdown][1] is capable of doing.
+                *Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*",
+                "tags":["introduction","c++"],
+                "parent": "postID",
+                "_status":{
+                  ""
+                },
+                "_links":{
+                  "self":{"href":"/api/{category}/posts/{pid}"},
+                  "comments":{"href":"/api/{category}/posts/{pid}/comments"},
+                  "related":{"href":"/api/{category}/posts/{pid}/related"},
+                  "like":{"href":"/api/{category}/posts/{pid}/like"}
+                }
+              }
+  /{pid}:
+    get:
+      description: |
+        Find a post by it's post id (pid).
+      body:
+        application/vnd.mogger.post:
+          example: |
+            {
+              "_links": {
+                "self":{ "href":"/api/{:category}/posts/{:pid}" },
+                "edit":{ "href":"/api/{:category}/posts/{:pid}" },
+                "delete":{"href":"/api/{:category}/posts/{:pid}" },
+                "comments":{"href":"/api/{:category}/posts/{:pid}/comments"},
+                "related":{"href":"/api/{:category}/posts/{:pid}/related"},
+                "pagination":{
+                  "next": {"href":"/api/{:category}/posts/{:pid}/next"},
+                  "prev":{"href":"/api/{:category}/posts/{:pid}/prev"},
+                  "range":{
+                    "start":0,
+                    "end": 10,
+                    "total": 100
+                    }
+                }
+              },
+              "title":"Post 1",
+              "category": "cpp",
+              "content": "markdown syntax",
+              "pid": 101,
+              "created": "2014-11-20 22:00:33.511-05",
+              "modified":"2014-11-20 22:00:33.511-05",
+              "_embedded":{
+                "children":[{
+                  "title":"Part 2",
+                  "href": "/api/{:category}/posts/{:pid}"
+                }],
+                "author":{
+                  "name":"John",
+                  "_links":{
+                    "self":{"href":"/api/{:category}/users/{:uid}"}
+                  }
+                  "likes": 25
+                }
+              }
+            }
+    put:
+      description: |
+        Update a post by it's post id (pid).
+      body:
+        application/vnd.mogger.post:
+          example: |
+            {
+              "title":"Edited Title",
+              "content":"Edited Markdown Content",
+              "parent": "parent's postID",
+              "tags":["newTag","oldTag","editedTag"],
+            }
+    delete:
+      description: Delete a post by it's post id (pid).
+      responses:
+        200:
+          body:
+            application/vnd.mogger.post:
+              example: |
+                {
+                  "_status": {
+                    "code": 200,
+                    "content": "message to return"
+                  }
+                }
+  /{pid}/comments:
+    get:
+      description: |
+        Retrieve current post's (pid) comments.
+      responses:
+        200:
+          body:
+            application/vnd.mogger.post:
+              example: !include json/posts.comments.query.json
