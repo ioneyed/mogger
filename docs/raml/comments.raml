@@ -4,8 +4,13 @@
 
     {cid} refers to the comments's unique identifier.
   get:
+    queryParameters:
+      q:
+        description: Search phrase to look for products
+        type: string
+        required: false
     description: |
-      Retrieve current post's (pid) comments.
+      Retrieve Comments based on Query paramters.
     responses:
       200:
         body:
