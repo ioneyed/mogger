@@ -1,3 +1,6 @@
 [submodule "mogger-base"]
 	path = mogger-base
 	url = https://github.com/ioneyed/mogger-base.git
+[submodule "mogger-node-loopback"]
+	path = mogger-node-loopback
+	url = https://github.com/ioneyed/mogger-node-loopback.git
