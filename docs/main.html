@@ -113,93 +113,13 @@
         .list-group-item:hover {
             background-color: #f5f5f5;
         }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Mogger API documentation <small>version .1</small></h1><p>http://mogger.ioneyed.com/api/</p><h3 id="Mogger-API-Documentation"><a href="#Mogger-API-Documentation">Mogger API Documentation</a></h3><p>Mogger is a multi-server blogging platform used to teach various languages as well as show that all languages can be used as a web service. Each mogger-backend has to follow this API to work within the mogger ecosystem.</p><p>Application Mime-types application/vnd.mogger.post+json;v={version} application/vnd.mogger.post+xml;v={version}</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_posts" class="panel-title">Posts</h3></div><div class="panel-body"><div class="top-resource-description"><p>Handle the POSTS object and child objects (comments/likes) pertaining to said post.</p><p>{pid} refers to the post&#39;s unique identifier.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posts"><span class="parent"></span>/posts</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_posts_get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_posts_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__posts" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_posts_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a collection of posts</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_posts_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new Post (tbd).</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/posts</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a collection of posts</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts_get_request" data-toggle="tab">Request</a></li><li><a href="#_posts_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts_get_request"><h3>Query Parameters</h3><ul><li><strong>q</strong>: <em>(string)</em></li></ul></div><div class="tab-pane" id="_posts_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "_status": {},
-  "_links": {
-    "_self": {"href":"api/{:category}/posts?q=quesryString"}
-  },
-  "_embedded": {
-    "posts": [{
-      "category": "cpp"
-      "content": "cpp post content",
-      "author": "author name",
-      "createdAt": "2014-11-20 22:00:33.511-05",
-      "_links": {
-        "self":{ "href":"/api/{:category}/posts/{:pid}" },
-        "edit":{ "href":"/api/{:category}/posts/{:pid}" },
-        "delete":{"href":"/api/{:category}/posts/{:pid}" },
-        "comments":{"href":"/api/{:category}/posts/{:pid}/comments"},
-        "related":{"href":"/api/{:category}/posts/{:pid}/related"},
-        "like":{"href":"/api/{:category}/posts/{:pid}/like"}
-      }
-    }]
-  }
-}
-</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/posts</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new Post (tbd).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts_post_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts_post_request"><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "title":"A New Post",
-  "category": "cpp",
-  "content":"# An exhibit of Markdown
-    This note demonstrates some of what [Markdown][1] is capable of doing.
-  *Note: Feel free to play with this page. Unlike regular notes, this doesn&#x27;t automatically save itself.*",
-  "tags":["introduction","c++"],
-  "parent": "postID"
-}
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posts__pid_"><span class="parent">/posts</span>/{pid}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_posts__pid__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_posts__pid__put"><span class="badge badge_put">put</span></a> <a href="#" data-toggle="modal" data-target="#_posts__pid__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__posts__pid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_posts__pid__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Find a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_posts__pid__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_posts__pid__delete" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/posts</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a post by it&#39;s post id (pid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__get_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/vnd.mogger.post+json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "_links": {
-    "self":{ "href":"/api/{:category}/posts/{:pid}" },
-    "edit":{ "href":"/api/{:category}/posts/{:pid}" },
-    "delete":{"href":"/api/{:category}/posts/{:pid}" },
-    "comments":{"href":"/api/{:category}/posts/{:pid}/comments"},
-    "related":{"href":"/api/{:category}/posts/{:pid}/related"},
-    "pagination":{
-      "next": {"href":"/api/{:category}/posts/{:pid}/next"},
-      "prev":{"href":"/api/{:category}/posts/{:pid}/prev"},
-      "range":{
-        "start":0,
-        "end": 10,
-        "total": 100
-        }
-    }
-  },
-  "title":"Post 1",
-  "category": "cpp",
-  "content": "markdown syntax",
-  "pid": 101,
-  "created": "2014-11-20 22:00:33.511-05",
-  "modified":"2014-11-20 22:00:33.511-05",
-  "_embedded":{
-    "children":[{
-      "title":"Part 2",
-      "href": "/api/{:category}/posts/{:pid}"
-    }],
-    "author":{
-      "name":"John",
-      "_links":{
-        "self":{"href":"/api/{:category}/users/{:uid}"}
-      }
-      "likes": 25
-    }
-  }
-}
-</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/posts</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update a post by it&#39;s post id (pid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__put_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "title":"Edited Title",
-  "content":"Edited Markdown Content",
-  "parent": "parent&#x27;s postID",
-  "tags":["newTag","oldTag","editedTag"],
-}
-</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/posts</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a post by it&#39;s post id (pid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__delete_request" data-toggle="tab">Request</a></li><li><a href="#_posts__pid__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__delete_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_posts__pid__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "_status": {
-    "code": 200,
-    "content": "message to return"
-  }
-}
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posts__pid__comments"><span class="parent">/posts</span>/{pid}/comments</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_posts__pid__comments_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__posts__pid__comments" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_posts__pid__comments_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve current post&#39;s (pid) comments.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__comments_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/posts</span>/{pid}/comments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve current post&#39;s (pid) comments.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__comments_get_request" data-toggle="tab">Request</a></li><li><a href="#_posts__pid__comments_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__comments_get_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_posts__pid__comments_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Mogger API documentation <small>version .1</small></h1><p>http://mogger.ioneyed.com/api/</p><h3 id="Mogger-API-Documentation"><a href="#Mogger-API-Documentation">Mogger API Documentation</a></h3><p>Mogger is a multi-server blogging platform used to teach various languages as well as show that all languages can be used as a web service. Each mogger-backend has to follow this API to work within the mogger ecosystem.</p><p>Application Mime-types application/vnd.mogger.post+json;v={version} application/vnd.mogger.post+xml;v={version}</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_comments" class="panel-title">Comments</h3></div><div class="panel-body"><div class="top-resource-description"><p>Handle the COMMENT objects.</p><p>{cid} refers to the comments&#39;s unique identifier.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__comments"><span class="parent"></span>/comments</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_comments_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__comments" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_comments_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve Comments based on Query paramters.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_comments_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/comments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve Comments based on Query paramters.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_comments_get_request" data-toggle="tab">Request</a></li><li><a href="#_comments_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_comments_get_request"><h3>Query Parameters</h3><ul><li><strong>q</strong>: <em>(string)</em><p>Search phrase to look for products</p></li></ul></div><div class="tab-pane" id="_comments_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "_status":{
     "code":200,
     "message":"success"
   },
   "_links":{
-    "self": {"href":"/api/posts/{pid}/comments"},
+    "self": {"href":"/api/comments"},
   },
   "_embedded":{
     "comments":[{
@@ -215,26 +135,40 @@
     }]
   }
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_comments" class="panel-title">Comments</h3></div><div class="panel-body"><div class="top-resource-description"><p>Handle the COMMENT objects.</p><p>{cid} refers to the comments&#39;s unique identifier.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__comments"><span class="parent"></span>/comments</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_comments_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__comments" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_comments_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve current post&#39;s (pid) comments.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_comments_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/comments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve current post&#39;s (pid) comments.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_comments_get_request" data-toggle="tab">Request</a></li><li><a href="#_comments_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_comments_get_request"></div><div class="tab-pane" id="_comments_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__comments__pid_"><span class="parent">/comments</span>/{pid}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_comments__pid__post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__comments__pid_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Comment on a post.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_comments__pid__post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_comments__pid__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/comments</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"></div><ul class="nav nav-tabs"><li class="active"><a href="#_comments__pid__post_request" data-toggle="tab">Request</a></li><li><a href="#_comments__pid__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_comments__pid__post_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em><p>Post Identifier</p></li></ul><h3>Body</h3><p><strong>Type: application/vnd.mogger.comment</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "content":"my comment"
+}
+</code></pre></div><div class="tab-pane" id="_comments__pid__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.comment</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_links": {
+    "self":{"href":"/api/comments/{cid}"},
+    "post":{"href":"/api/posts/{pid}"},
+  },
   "_status":{
-    "code":200,
-    "message":"success"
+    "http_code": 200,
+    "content":"success",
+    "error_code": null
   },
-  "_links":{
-    "self": {"href":"/api/posts/{pid}/comments"},
-  },
-  "_embedded":{
-    "comments":[{
-      "cid":"commentID",
-      "content":"comment content",
-      "author" :"author of comment",
-      "createdAt": "time of conception",
-      "_links":{
-        "self"  :{"href":"/api/comments/{cid}"},
-        "like"  :{"href":"/api/comments/{cid}/like"},
-        "reply" :{"href":"/api/comments/{cid}/reply"}
-      }
-    }]
+  "author":"comment author&#x27;s username",
+  "content":"comment content markdown",
+  "createdAt":"created timestamp"
+  "pid": "post id"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.comment</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_status":{
+    "http_code": "401",
+    "content":"Unauthorized Access. Please Login"
+  }
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.comment</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_status":{
+    "http_code": "403",
+    "content":"Prohibited Operation. You are not the owner."
+  }
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.comment</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_status":{
+    "http_code": "404",
+    "content":"Not Found"
   }
 }
 </code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__comments__cid_"><span class="parent">/comments</span>/{cid}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_comments__cid__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_comments__cid__put"><span class="badge badge_put">put</span></a> <a href="#" data-toggle="modal" data-target="#_comments__cid__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__comments__cid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_comments__cid__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Find a comment by it&#39;s comment id (cid).</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_comments__cid__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update a comment by it&#39;s comment id (cid).</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_comments__cid__delete" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_comments__cid__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/comments</span>/{cid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a comment by it&#39;s comment id (cid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_comments__cid__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_comments__cid__get_request"><h3>URI Parameters</h3><ul><li><strong>cid</strong>: <em>required (string)</em><p>comment identifier</p></li></ul><h3>Body</h3><p><strong>Type: application/vnd.mogger.comment</strong></p><p><strong>Example</strong>:</p><pre><code>{
@@ -330,4 +264,121 @@
     "content":"Unauthorized Access. Please Login"
   }
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_posts">Posts</a></li><li><a href="#_comments">Comments</a></li></ul></div></div></div></div></body></html>
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_posts" class="panel-title">Posts</h3></div><div class="panel-body"><div class="top-resource-description"><p>Handle the POSTS object and child objects (comments/likes) pertaining to said post.</p><p>{pid} refers to the post&#39;s unique identifier.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posts"><span class="parent"></span>/posts</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_posts_get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_posts_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__posts" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_posts_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a collection of posts</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_posts_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new Post (tbd).</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/posts</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a collection of posts</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts_get_request" data-toggle="tab">Request</a></li><li><a href="#_posts_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts_get_request"><h3>Query Parameters</h3><ul><li><strong>q</strong>: <em>(string)</em><p>Search phrase to look for products</p></li></ul></div><div class="tab-pane" id="_posts_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_status": {},
+  "_links": {
+    "self": {"href":"/api/{:category}/posts?q=quesryString"},
+    "pagination": !include json/pagination.json
+  },
+  "_embedded": {
+    "posts": [{
+      "category": "cpp"
+      "content": "cpp post content",
+      "author": "author name",
+      "createdAt": "2014-11-20 22:00:33.511-05",
+      "_links": {
+        "self":{ "href":"/api/{category}/posts/{pid}" },
+        "comments":{"href":"/api/{category}/posts/{pid}/comments"},
+        "related":{"href":"/api/{category}/posts/{pid}/related"},
+        "like":{"href":"/api/{category}/posts/{pid}/like"}
+      }
+    }]
+  }
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/posts</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new Post (tbd).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts_post_request" data-toggle="tab">Request</a></li><li><a href="#_posts_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts_post_request"><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "title":"A New Post",
+  "category": "cpp",
+  "content":"# An exhibit of Markdown
+    This note demonstrates some of what [Markdown][1] is capable of doing.
+  *Note: Feel free to play with this page. Unlike regular notes, this doesn&#x27;t automatically save itself.*",
+  "tags":["introduction","c++"],
+  "parent": "postID"
+}
+</code></pre></div><div class="tab-pane" id="_posts_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "title":"A New Post",
+  "category": "cpp",
+  "content":"# An exhibit of Markdown
+  This note demonstrates some of what [Markdown][1] is capable of doing.
+  *Note: Feel free to play with this page. Unlike regular notes, this doesn&#x27;t automatically save itself.*",
+  "tags":["introduction","c++"],
+  "parent": "postID",
+  "_status":{
+    ""
+  },
+  "_links":{
+    "self":{"href":"/api/{category}/posts/{pid}"},
+    "comments":{"href":"/api/{category}/posts/{pid}/comments"},
+    "related":{"href":"/api/{category}/posts/{pid}/related"},
+    "like":{"href":"/api/{category}/posts/{pid}/like"}
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posts__pid_"><span class="parent">/posts</span>/{pid}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_posts__pid__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_posts__pid__put"><span class="badge badge_put">put</span></a> <a href="#" data-toggle="modal" data-target="#_posts__pid__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__posts__pid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_posts__pid__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Find a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_posts__pid__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_posts__pid__delete" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete a post by it&#39;s post id (pid).</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/posts</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Find a post by it&#39;s post id (pid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__get_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_links": {
+    "self":{ "href":"/api/{:category}/posts/{:pid}" },
+    "comments":{"href":"/api/{:category}/posts/{:pid}/comments"},
+    "related":{"href":"/api/{:category}/posts/{:pid}/related"},
+    "pagination":{
+      "next": {"href":"/api/{:category}/posts/{:pid}/next"},
+      "prev":{"href":"/api/{:category}/posts/{:pid}/prev"},
+      "range":{
+        "start":0,
+        "end": 10,
+        "total": 100
+        }
+    }
+  },
+  "title":"Post 1",
+  "category": "cpp",
+  "content": "markdown syntax",
+  "pid": 101,
+  "created": "2014-11-20 22:00:33.511-05",
+  "modified":"2014-11-20 22:00:33.511-05",
+  "_embedded":{
+    "children":[{
+      "title":"Part 2",
+      "href": "/api/{:category}/posts/{:pid}"
+    }],
+    "author":{
+      "name":"John",
+      "_links":{
+        "self":{"href":"/api/{:category}/users/{:uid}"}
+      }
+      "likes": 25
+    }
+  }
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/posts</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update a post by it&#39;s post id (pid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__put_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "title":"Edited Title",
+  "content":"Edited Markdown Content",
+  "parent": "parent&#x27;s postID",
+  "tags":["newTag","oldTag","editedTag"],
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/posts</span>/{pid}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a post by it&#39;s post id (pid).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__delete_request" data-toggle="tab">Request</a></li><li><a href="#_posts__pid__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__delete_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_posts__pid__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_status": {
+    "code": 200,
+    "content": "message to return"
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posts__pid__comments"><span class="parent">/posts</span>/{pid}/comments</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_posts__pid__comments_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__posts__pid__comments" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_posts__pid__comments_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve current post&#39;s (pid) comments.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_posts__pid__comments_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/posts</span>/{pid}/comments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve current post&#39;s (pid) comments.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_posts__pid__comments_get_request" data-toggle="tab">Request</a></li><li><a href="#_posts__pid__comments_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_posts__pid__comments_get_request"><h3>URI Parameters</h3><ul><li><strong>pid</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_posts__pid__comments_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/vnd.mogger.post</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_status":{
+    "code":200,
+    "message":"success"
+  },
+  "_links":{
+    "self": {"href":"/api/comments"},
+  },
+  "_embedded":{
+    "comments":[{
+      "cid":"commentID",
+      "content":"comment content",
+      "author" :"author of comment",
+      "createdAt": "time of conception",
+      "_links":{
+        "self"  :{"href":"/api/comments/{cid}"},
+        "like"  :{"href":"/api/comments/{cid}/like"},
+        "reply" :{"href":"/api/comments/{cid}/reply"}
+      }
+    }]
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_comments">Comments</a></li><li><a href="#_posts">Posts</a></li></ul></div></div></div></div></body></html>

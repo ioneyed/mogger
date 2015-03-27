@@ -16,6 +16,54 @@
         body:
           application/vnd.mogger.post:
             example: !include json/posts.comments.query.json
+  /{pid}:
+    description: |
+      Comment on a post.
+    uriParameters:
+      pid:
+        type: string
+        description: Post Identifier
+    post:
+      body:
+        application/vnd.mogger.comment:
+          example: |
+            {
+              "content":"my comment"
+            }
+      responses:
+        200:
+          body:
+            application/vnd.mogger.comment:
+              example: |
+                {
+                  "_links": {
+                    "self":{"href":"/api/comments/{cid}"},
+                    "post":{"href":"/api/posts/{pid}"},
+                  },
+                  "_status":{
+                    "http_code": 200,
+                    "content":"success",
+                    "error_code": null
+                  },
+                  "author":"comment author's username",
+                  "content":"comment content markdown",
+                  "createdAt":"created timestamp"
+                  "pid": "post id"
+                }
+        401:
+          body:
+            application/vnd.mogger.comment:
+              example: !include json/401.json
+        403:
+          body:
+            application/vnd.mogger.comment:
+              example: !include json/403.json
+        404:
+          body:
+            application/vnd.mogger.comment:
+              example: !include json/404.json
+
+
   /{cid}:
     uriParameters:
       cid:
